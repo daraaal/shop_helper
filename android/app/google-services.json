@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "605329036211",
+    "project_id": "shophelper-ce6e4",
+    "storage_bucket": "shophelper-ce6e4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605329036211:android:1b7ac3701b0345f83731c6",
+        "android_client_info": {
+          "package_name": "com.example.shop_helper_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6QHhEf-ED42lhK_3k2N21D2fE-OeiYN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
