@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_localizations: # <-- ДОДАЙ ЦЮ СЕКЦІЮ
+    sdk: flutter
+
   # Переконайтесь, що цей рядок тут є і має правильний відступ
   font_awesome_flutter: ^10.7.0
   flutter_svg: ^2.0.10+1 
@@ -58,6 +62,8 @@ dependencies:
   firebase_storage: ^11.6.0  
   image_picker: ^1.0.7
 
+  intl: ^0.20.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -78,8 +84,9 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
+  # uses-material-design: true
   uses-material-design: true
-
+  generate: true
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

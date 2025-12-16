@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "shophelper-ce6e4"
+  },
+  "targets": {
+    "shophelper-ce6e4": {
+      "hosting": {
+        "shop_helper_web": [
+          "shophelper-ce6e4"
+        ]
+      }
+    }
   }
 }

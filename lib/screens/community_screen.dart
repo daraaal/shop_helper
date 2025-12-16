@@ -69,8 +69,13 @@ class CommunityScreen extends StatelessWidget {
         'color': randomColor,
       });
 
+      // final itemsToAdd = (listData['items'] as List<String>).map((itemName) => {
+      //   'name': itemName, 'qty': '', 'bought': false, 'createdAt': Timestamp.now(), 'category': '',
+      // }).toList();
+
       final itemsToAdd = (listData['items'] as List<String>).map((itemName) => {
-        'name': itemName, 'qty': '', 'bought': false, 'createdAt': Timestamp.now(), 'category': '',
+        'name': itemName, 'qty': '', 'bought': false, 'createdAt': Timestamp.now(),
+        'category': listData['categoryName'], // <-- ПРИЗНАЧАЄМО КАТЕГОРІЮ
       }).toList();
 
       final batch = FirebaseFirestore.instance.batch();

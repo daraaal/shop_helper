@@ -8,13 +8,12 @@ import '../core/app_colors.dart';
 class ItemsScreen extends StatefulWidget {
   final String listId;
   final String listName;
-  final String listIconName; // Припускаємо, що цей параметр передається
-
+  final String listIconName; 
   const ItemsScreen({
     super.key,
     required this.listId,
     required this.listName,
-    this.listIconName = 'carrot', // Значення за замовчуванням
+    this.listIconName = 'carrot', 
   });
 
   @override
@@ -135,7 +134,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
       backgroundColor: AppColors.backgroundGrey,
       appBar: AppBar(
         title: Text(widget.listName),
-        // backgroundColor та foregroundColor тепер беруться з теми
         elevation: 1.0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

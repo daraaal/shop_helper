@@ -81,6 +81,22 @@ class ShoppingListsProvider with ChangeNotifier {
       print("Помилка видалення: $e");
     }
   }
+
+  Future<void> refreshSingleList(String listId) async {
+    try {
+      final doc = await FirebaseFirestore.instance.collection('shopping_lists').doc(listId).get();
+      if (doc.exists) {
+        final updatedList = ShoppingListModel.fromSnapshot(doc);
+        final index = _shoppingLists.indexWhere((list) => list.id == listId);
+        if (index != -1) {
+          _shoppingLists[index] = updatedList;
+          notifyListeners(); // Повідомляємо слухачів про зміну
+        }
+      }
+    } catch (e) {
+      print("Помилка оновлення одного списку: $e");
+    }
+  }
 }
 
 /*

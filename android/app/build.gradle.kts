@@ -13,6 +13,7 @@ android {
     namespace = "com.example.shop_helper_app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+    // ndkVersion = "27.0.8458021"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

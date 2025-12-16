@@ -1,30 +1,3 @@
-/*
-// import 'package:flutter/material.dart';
-// import 'screens/auth_screen.dart';
-// import 'core/app_colors.dart';
-
-// void main() {
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'ShopHelper',
-//       theme: ThemeData(
-//         fontFamily: 'Inter', 
-//         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.darkGreen),
-//         useMaterial3: true,
-//       ),
-//       debugShowCheckedModeBanner: false,
-//       home: const AuthScreen(),
-//     );
-//   }
-// }
-*/
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,15 +5,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shop_helper_app/providers/shopping_lists_provider.dart';
+import 'package:shop_helper_app/providers/sort_provider.dart';
 import 'package:shop_helper_app/providers/theme_provider.dart';
 import 'package:shop_helper_app/screens/auth_screen.dart';
 import 'package:shop_helper_app/screens/list_screen.dart';
+import 'package:intl/date_symbol_data_local.dart'; 
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/app_colors.dart';
 import 'firebase_options.dart';
 import 'dart:ui'; 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeDateFormatting('uk_UA', null);
   
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -64,6 +42,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (ctx) => ShoppingListsProvider()),
         ChangeNotifierProvider(create: (ctx) => ThemeProvider()),
+        ChangeNotifierProvider(create: (ctx) => SortProvider()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
@@ -75,8 +54,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(
               seedColor: AppColors.darkGreen,
               brightness: Brightness.light,
-              surface: AppColors.cardWhite, // Колір карток, AppBar
-              background: AppColors.backgroundGrey, // Колір фону
+              surface: AppColors.cardWhite, 
+              background: AppColors.backgroundGrey, 
             ),
           );
 
@@ -88,8 +67,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(
               seedColor: AppColors.darkGreen,
               brightness: Brightness.dark,
-              surface: const Color(0xFF1E1E1E), // Колір карток, AppBar
-              background: const Color(0xFF121212), // Колір фону
+              surface: const Color(0xFF1E1E1E), 
+              background: const Color(0xFF121212), 
             ),
           );
 
@@ -97,6 +76,17 @@ class MyApp extends StatelessWidget {
             title: 'ShopHelper',
             themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
             
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('uk', 'UA'), // Українська
+              Locale('en', 'US'), // Англійська (як запасний варіант)
+            ],
+            locale: const Locale('uk', 'UA'),
+
             scrollBehavior: MyCustomScrollBehavior(), 
 
             theme: lightTheme.copyWith(
